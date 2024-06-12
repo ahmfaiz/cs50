@@ -18,14 +18,14 @@ SELECT * FROM crime_scene_reports WHERE year = 2023 AND month = 7 AND day = 28 A
 
 -- Lets take a look at the interviews
 .schema interviews
--- Selecting intviews given on the day mentioning bakery
+-- Selecting interviews given on the day mentioning bakery
 SELECT transcript FROM interviews WHERE year = 2023 AND month = 7 and day = 28 AND transcript LIKE '%bakery%';
 
--- Notes about the theif based on witnesses:
+-- Notes about the thief based on witnesses:
 -- 1. Drove a car out of the bakery parking around 10 mins later.
 -- 2. Withdrew money from atm at Leggett Street before the theft.
--- 3. Theif called accomplice after leaving the bakery and talked to them for less than a minute.
--- 4. Theif took earliest flight out of fiftyville on 29.
+-- 3. Thief called accomplice after leaving the bakery and talked to them for less than a minute.
+-- 4. Thief took earliest flight out of fiftyville on 29.
 ---------------------------------------------------------
 
 
@@ -81,7 +81,7 @@ SELECT id FROM people WHERE phone_number IN
 -- To understand the flights table
 .schema flights
 
--- Filter flight the theif could have taken based on Note:4 (i.e. first flight from Fiftyville on 29th)
+-- Filter flight the thief could have taken based on Note:4 (i.e. first flight from Fiftyville on 29th)
 SELECT * FROM flights WHERE day = 29 AND origin_airport_id =
 (SELECT id FROM airports WHERE city = 'Fiftyville')
 ORDER BY hour, minute LIMIT 1;
@@ -99,7 +99,7 @@ SELECT id FROM people WHERE passport_number IN
 ---------------------------------------------------------
 
 
--- FINDING INTERSECTION OF THESE 4 ID SETS TO HOPEFULLY FIND THE THEIF
+-- FINDING INTERSECTION OF THESE 4 ID SETS TO HOPEFULLY FIND THE THIEF
 SELECT id FROM people WHERE license_plate IN
     (SELECT license_plate FROM bakery_security_logs WHERE day = 28 AND hour>=10 AND minute>=15 AND activity='exit' AND hour < 11 AND minute < 25)
 INTERSECT
@@ -122,7 +122,7 @@ SELECT id FROM people WHERE passport_number IN
 -- | 686048 |
 -- +--------+
 
--- Theif is:
+-- thief is:
 SELECT name FROM people WHERE id = 686048;
 -- +-------+
 -- | name  |
