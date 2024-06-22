@@ -1,0 +1,37 @@
+HTML tags:
+<meta>
+<link>
+<script>
+<div>
+<nav>
+<button>
+<ul>
+<li>
+<a>
+<p>
+<img>
+<button>
+<marquee>
+
+
+CSS properties
+background-color
+color
+text-align
+margin
+border-radius
+font-family
+font-size
+padding
+width
+display
+visibility
+
+
+Use of Bootstrap:
+Used bootstrap to implement a responsive navbar that expands and collapses into a toggleable
+menu based on screen width.
+
+Use of Javascript:
+Used JS to implement a button that reveals a secret (my first site) on press.
+Basically, it sets the visibility of a div to visible on press.
