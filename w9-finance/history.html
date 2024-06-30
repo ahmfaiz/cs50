@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    History
+{% endblock %}
+
+{% block main %}
+    <table>
+        <thead>
+            <tr>
+                <th>Symbol</th>
+                <th>Shares</th>
+                <th>Price</th>
+                <th>Activity</th>
+                <th>Timestamp</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for entry in history %}
+                <tr>
+                    <td>{{ entry.symbol }}</td>
+                    <td>{{ entry.shares }}</td>
+                    <td>{{ entry.price }}</td>
+                    {% if entry.shares < 0 %}
+                        <td style="color: crimson;">SOLD</td>
+                    {% else %}
+                        <td style="color: forestgreen;">BOUGHT</td>
+                    {% endif %}
+                    <td>{{ entry.timestamp }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

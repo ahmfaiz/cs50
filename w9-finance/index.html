@@ -1,0 +1,61 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Portfolio
+{% endblock %}
+
+{% block main %}
+    <script>
+        function buy(formid) {
+            document.getElementById(formid).action = "/buy";
+            document.getElementById(formid).submit();
+        }
+
+        function sell(formid) {
+            document.getElementById(formid).action = "/sell";
+            document.getElementById(formid).submit();
+        }
+    </script>
+    <table>
+        <thead>
+            <tr>
+                <th>Symbol</th>
+                <th>Shares</th>
+                <th>Price</th>
+                <th>TOTAL</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for stock in stocks %}
+                <tr>
+                    <td>{{ stock.symbol }}</td>
+                    <td>{{ stock.count }}</td>
+                    <td>{{ stock.price }}</td>
+                    <td>{{ stock.total_price }}</td>
+                    <td style="max-width: 200px;">
+                        <form id="{{ stock.symbol }}" method="post">
+                            <div class="input-group">
+                                <input name="shares" class="form-control" placeholder="Shares" type="number" aria-label="Shares with two button addons">
+                                <input type="hidden" name="symbol" value="{{ stock.symbol }}">
+                                <button class="btn btn-outline-secondary" type="button" onclick="buy('{{ stock.symbol }}')">Buy</button>
+                                <button class="btn btn-outline-secondary" type="button" onclick="sell('{{ stock.symbol }}')">Sell</button>
+                            </div>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+            <tr>
+                <td></td>
+                <td></td>
+                <td><strong>Cash</strong></td>
+                <td>{{ cash }}</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td><strong>TOTAL</strong></td>
+                <td>{{ total }}</td>
+            </tr>
+        </tbody>
+    </table>
+{% endblock %}
